@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    This Source Code Form is subject to the terms of the Mozilla Public License, v.
+    2.0 with a Healthcare Disclaimer.
+    A copy of the Mozilla Public License, v. 2.0 with the Healthcare Disclaimer can
+    be found under the top level directory, named LICENSE.
+    If a copy of the MPL was not distributed with this file, You can obtain one at
+    http://mozilla.org/MPL/2.0/.
+    If a copy of the Healthcare Disclaimer was not distributed with this file, You
+    can obtain one at the project website https://github.com/igia.
+
+    Copyright (C) 2018-2019 Persistent Systems, Inc.
+
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>io.igia</groupId>
+    <artifactId>igia-commons</artifactId>
+    <packaging>pom</packaging>
+    <name>igia-commons</name>
+    <description>igia server side libraries pom</description>
+    <version>0.3.0</version>
+
+
+    <modules>
+    	<module>igia-lib-parent</module>
+        <module>igia-hipaa-audit-autoconfig</module>
+    </modules>
+    
+    <build>
+        <plugins>
+            <!-- skip depoyment of this aggregate pom -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.8.2</version>
+                <configuration>
+                <skip>true</skip>
+                </configuration>
+            </plugin>
+
+            <!-- license check in all modules including this one -->
+            <plugin>
+                <groupId>com.mycila</groupId>
+                <artifactId>license-maven-plugin</artifactId>
+                <version>3.0</version>
+                <configuration>
+                    <header>HEADER</header>
+
+                    <includes>
+                        <include>**/*.*</include>
+                    </includes>
+                    <excludes>
+                        <exclude>node_modules/**/*</exclude>
+                        <exclude>node/**/*</exclude>
+                        <exclude>target/**/*</exclude>
+                        <exclude>.mvn/**/*</exclude>
+                        <exclude>.settings/**/*</exclude>
+                        <exclude>.vscode/**/*</exclude>
+                        <exclude>**/*.md</exclude>
+                        <exclude>**/*.csv</exclude>
+                        <exclude>**/*.p12</exclude>
+                        <exclude>**/robots.txt</exclude>
+                        <exclude>**/banner.txt</exclude>
+                        <exclude>**/manifest.*</exclude>
+                        <exclude>**/.dockerignore</exclude>
+                        <exclude>LICENSE</exclude>
+                        <exclude>HEADER</exclude>
+                        <exclude>.gitattributes</exclude>
+                        <exclude>.huskyrc</exclude>
+                        <exclude>.prettierrc</exclude>
+                        <exclude>.prettierignore</exclude>
+                        <exclude>.factorypath</exclude>
+                        <exclude>yarn.lock</exclude>
+                        <exclude>mvnw.cmd</exclude>
+                        <exclude>sonar-project.properties</exclude>
+                        <!-- bypass temporary files created during Jenkins build -->
+                        <exclude>env.txt</exclude>
+                    </excludes>
+                    <mapping>
+                        <scss>JAVADOC_STYLE</scss>
+                        <ts>SLASHSTAR_STYLE</ts>
+                        <feature>SCRIPT_STYLE</feature>
+                        <cmmn>XML_STYLE</cmmn>
+                        <dmn>XML_STYLE</dmn>
+                        <conf>SCRIPT_STYLE</conf>
+                        <factories>JAVADOC_STYLE</factories>
+                    </mapping>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+
+    </build>
+</project>
