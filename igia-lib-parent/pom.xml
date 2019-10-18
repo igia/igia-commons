@@ -21,7 +21,7 @@
     <packaging>pom</packaging>
     <name>igia-lib-parent</name>
     <description>igia server side lib parent</description>
-    <version>0.3.0</version>
+    <version>0.3.2</version>
 
     <dependencyManagement>
 		<dependencies>
